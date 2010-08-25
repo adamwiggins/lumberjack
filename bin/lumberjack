@@ -4,4 +4,4 @@ require File.dirname(__FILE__) + '/../lib/lumberjack'
 
 crashlog = STDIN.read
 
-puts Suggestion.find(crashlog)
+puts Lumberjack::Suggestion.find(crashlog)
