@@ -4,20 +4,22 @@ class RailsGems
   def run(contents)
     if gems = parse_gems(contents)
       gems = gems.split("\n").map { |gem| gem.strip }
-      <<EOF
-Your application is missing the following gems:
+      return <<EOF
+-----> Your application is missing the following gems:
 
-#{gems.map { |g| "* #{g}" }.join("\n")}
+#{gems.map { |g| "       * #{g}" }.join("\n")}
 
-Add those to your Gemfile or .gems manifest and push again.
+       Add those to your Gemfile or .gems manifest and push again.
 
-[Read the docs on managing gems](http://docs.heroku.com/gems) for more information.
+       See the docs on managing gems for more information:
+       http://docs.heroku.com/gems
 EOF
     else
       <<EOF
-Your application is missing gems required to start up.
+-----> Your application is missing gems required to start up.
 
-[Read the docs on managing gems](http://docs.heroku.com/gems) for more information.
+       See the docs on managing gems for more information:
+       http://docs.heroku.com/gems
 EOF
     end
   end
@@ -48,7 +50,11 @@ module Suggestion
     end
 
     if !suggestion
-     "[Check out the troubleshooting section on our Documentation site.](http://docs.heroku.com)"
+      return <<-EOMSG
+-----> Your application crashed.
+
+       Examine the backtrace above this message to debug.
+      EOMSG
     elsif suggestion['handler']
      handler = Kernel.const_get(suggestion['handler'])
      handler.new.run(crashlog)

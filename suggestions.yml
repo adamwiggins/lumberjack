@@ -6,11 +6,13 @@ lookup:
 - LoadError
 - MissingSourceFile
 - was not found
-message:
-   Your application is requiring a file that it can't find.
-   
-   
-   Most often this is due to missing gems. [Read the docs on managing gems](http://docs.heroku.com/gems) for more information.
+message: -----> Your application is requiring a file that it can't find.
+
+       Most often this is due to missing gems, or it could be that you failed
+       to commit the file to your repo.  See http://docs.heroku.com/gems for
+       more information on managing gems.
+
+       Examine the backtrace above this message to debug.
 ---
 lookup:
 - NameError
@@ -18,47 +20,52 @@ lookup:
 - NoMethodError
 - ArgumentError
 - RuntimeError
-message:
-  An error happened during the initialization of your app.
-  
-  
-  This may be due to a typo, wrong number of arguments, or calling a function that doesn't exists. Check the stack trace below for specific details.
-  
-  
-  Make sure the app is working locally in production mode, by running it with RAILS_ENV (for Rails apps) or RACK_ENV (for Sinatra or other rack apps) set to production. e.g. RAILS_ENV=production script/server.
+message: -----> An error happened during the initialization of your app.
+
+       This may be due to a typo, wrong number of arguments, or calling a
+       function that doesn't exist.
+
+       Make sure the app is working locally in production mode, by running it
+       with RAILS_ENV (for Rails apps) or RACK_ENV (for Sinatra or other rack
+       apps) set to production. e.g. RAILS_ENV=production script/server.
+
+       Examine the backtrace above this message to debug.
 ---
 lookup:
 - PGError
 - PostgresError
-message:
-  Your application had an error when talking to Postgres.
-  
-  
-  Please see the [database documentation](http://docs.heroku.com/database) for common errors and resolutions.
-  
-  
-  Also, make sure you've migrated your database if there's fresh migrations that you just pushed.
+message: -----> Your application had a fatal error when talking to Postgres.
+
+       See http://docs.heroku.com/database for troubleshooting information.
+
+       Make sure you've migrated your database if there are fresh migrations
+       that you just pushed.
+
+       Examine the backtrace above this message to debug.
 ---
 lookup: RAILS_GEM_VERSION
-message:
-  Rails can't find the expected version.
+message: -----> Rails can't find the expected version.
 
+       Check to ensure you have specified the correct version of Rails in your
+       Gemfile or .gems.  See http://docs.heroku.com/gems for details.
 
-  Check to ensure you have specified the correct version of Rails in your [Gemfile or .gems](http://docs.heroku.com/gems)
+       For Rails 2.3.5 or older, you may be affected by a Rails dependency
+       issue.  See http://docs.heroku.com/rails236 for details.
 
-
-  For Rails 2.3.5 or older, you may be affected by a [Rails dependency](http://docs.heroku.com/rails236) issue.
+       Examine the backtrace above this message to debug.
 ---
 lookup: Errno::ENOENT
-message:
-  Your application could not find files necessary to start up.
-  
-  
-  Make sure all your files are commited to your git repo, and they're not listed in your `.gitignore` file.
+message: -----> Your application could not find files necessary to start up.
+
+       Make sure all your files are commited to your git repo, are not listed
+       in your .gitignore, and that you have no Git submodules.
+
+       Examine the backtrace above this message to debug.
 ---
 lookup: Segmentation
-message:
-  Your application crashed due to a segmentation fault.
-  
-  
-  Check for updated versions of the libraries found in the stack trace that may have fixed this issue.
+message: -----> Your application crashed due to a segmentation fault.
+
+       Check for updated versions of the libraries found in the stack trace
+       that may have fixed this issue.
+
+       Examine the backtrace above this message to debug.
